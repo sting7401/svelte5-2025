@@ -2,7 +2,7 @@
 	import '../app.css';
 
 	let { children } = $props();
-	const navList: string[] = ['/', '기본', '기본 예제'];
+	const navList: string[] = ['/', '기본', 'snippet', 'deep-state'];
 </script>
 
 <nav class="space-x-5 p-2">
