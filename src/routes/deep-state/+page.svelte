@@ -1,3 +1,8 @@
-
 <script lang="ts">
-    </script>
+	const target = {
+		first: 'ai',
+		last: 'bi'
+	};
+
+	target.first = 'ci';
+</script>

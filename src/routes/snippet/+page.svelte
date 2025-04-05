@@ -44,9 +44,7 @@
 			<AlarmClock />
 		{/if}
 	{/snippet}
-	{#snippet children(isLeftHovered)}
-		자식요소에 전파 {isLeftHovered}
-	{/snippet}
+	자식요소에 전파
 
 	{#snippet right()}
 		<AlarmClock />

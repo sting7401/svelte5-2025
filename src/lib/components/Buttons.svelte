@@ -10,7 +10,7 @@
 	) & {
 		left?: Snippet<[boolean]>;
 		right?: Snippet;
-		children?: Snippet<[boolean]>;
+		children: Snippet<[boolean]>;
 		size?: 'py-10' | 'py-15';
 		shadow?: boolean;
 		bgColor?: string;
@@ -52,6 +52,13 @@
 	class:shadow-xl={shadow}
 	target={props?.href ? '_blank' : ''}
 	onclick={onClick}
+	onmouseover={() => {
+		onLeftHover?.();
+		isLeftHovered = true;
+	}}
+	onmouseleave={() => {
+		isLeftHovered = false;
+	}}
 	{...props}
 >
 	<!-- <button
@@ -82,26 +89,16 @@
 	]}"
 > -->
 	{#if left}
-		<div
-			role="presentation"
-			class="mr-2"
-			onmouseover={() => {
-				onLeftHover?.();
-				isLeftHovered = true;
-			}}
-			onmouseleave={() => {
-				isLeftHovered = false;
-			}}
-		>
+		<span role="presentation" class="mr-2">
 			{@render left?.(isLeftHovered)}
-		</div>
+		</span>
 	{/if}
-	{@render children?.(isLeftHovered)}
+	{@render children?.()}
 
 	{#if right}
-		<div class="ml-2">
+		<span class="ml-2">
 			{@render right?.()}
-		</div>
+		</span>
 	{/if}
 </svelte:element>
 

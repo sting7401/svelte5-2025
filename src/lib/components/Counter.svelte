@@ -26,7 +26,6 @@
 
 <button
 	type="button"
-	role="button"
 	onclick={() => {
 		ing = CounterState.INIT;
 		count = 0;
