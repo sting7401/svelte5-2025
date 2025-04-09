@@ -1,12 +1,12 @@
 <script lang="ts">
-import type { NotificationItems } from '$lib/types/basic/basic';
+import type { NotificationItemType } from '$lib/types/basic/basic';
 import Buttons from '$lib/components/Buttons.svelte';
 
 let {
 	notification,
 	onremove,
 }: {
-	notification: NotificationItems;
+	notification: NotificationItemType;
 	onremove?: (id: string) => void;
 } = $props();
 

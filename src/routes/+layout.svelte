@@ -1,8 +1,8 @@
 <script lang="ts">
-	import '../app.css';
+import '../app.css';
 
-	let { children } = $props();
-	const navList: string[] = ['/', '기본', 'snippet', 'deep-state'];
+let { children } = $props();
+const navList: string[] = ['/', '기본', 'snippet', 'deep-state', 'deep-state-raw', 'zod-text'];
 </script>
 
 <nav class="space-x-5 p-2">

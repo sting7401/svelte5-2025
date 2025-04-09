@@ -1,7 +1,21 @@
 <script lang="ts">
+import { z } from 'zod';
 let array = $state<number[]>([1, 2, 3, 4]);
 let objectArray = $state([{ id: 1 }, { id: 2 }]);
-let object = $state({
+
+// Zod 스키마 정의
+const objSchema = z.object({
+	firstName: z.string().min(1),
+	lastName: z.string().min(1),
+	address: z.object({
+		city: z.string().min(1),
+		street: z.string().min(1),
+	}),
+});
+// 스키마에서 타입 추출
+type ObjSchema = z.infer<typeof objSchema>;
+
+let object: ObjSchema = $state({
 	firstName: 'ali',
 	lastName: 'khan',
 	address: {
@@ -9,6 +23,13 @@ let object = $state({
 		street: 'street',
 	},
 });
+
+try {
+	objSchema.parse(object); // 유효성 검사
+	console.log('Object is valid');
+} catch (error) {
+	console.error('Validation error:', error);
+}
 
 // $inspect(object).with(console.trace);
 
@@ -23,6 +44,8 @@ let object = $state({
 <p>{object?.firstName}</p>
 <p>{object?.address?.city}</p>
 <p>{object?.address?.street}</p>
+
+<p>{objectArray}</p>
 
 <input type="text" name="" id="" bind:value={object.firstName} />
 <input type="text" name="" id="" bind:value={object.address.city} />
