@@ -1,48 +1,58 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
-	import type { HTMLButtonAttributes, HTMLAnchorAttributes } from 'svelte/elements';
-	let isLeftHovered = $state(false);
-	let button: HTMLButtonElement | HTMLAnchorElement;
+import type { Snippet } from 'svelte';
+import type { HTMLButtonAttributes, HTMLAnchorAttributes } from 'svelte/elements';
+let isLeftHovered = $state(false);
+let button: HTMLButtonElement | HTMLAnchorElement;
 
-	type Props = (
-		| (HTMLButtonAttributes & { href?: never })
-		| (HTMLAnchorAttributes & { href?: string })
-	) & {
-		left?: Snippet<[boolean]>;
-		right?: Snippet;
-		children: Snippet<[boolean]>;
-		size?: 'py-10' | 'py-15';
-		shadow?: boolean;
-		bgColor?: string;
-		textColor?: string;
-		rounded?: string;
-		props?: string | boolean | undefined;
-		onClick?: (e: Event) => void;
-		onLeftHover?: () => void;
-	};
+type Props = (
+	| (HTMLButtonAttributes & { href?: never })
+	| (HTMLAnchorAttributes & { href?: string })
+) & {
+	left?: Snippet<[boolean]>;
+	right?: Snippet;
+	children: Snippet<[boolean]>;
+	size?: 'py-10' | 'py-15';
+	shadow?: boolean;
+	bgColor?: string;
+	textColor?: string;
+	rounded?: string;
+	props?: string | boolean | undefined;
+	onClick?: (e: Event) => void;
+	onLeftHover?: () => void;
+};
 
-	let {
-		left,
-		right,
-		children,
-		size = 'py-10',
-		shadow = false,
-		bgColor,
-		textColor,
-		rounded = '',
-		onClick,
-		onLeftHover,
-		...props
-	}: Props = $props();
+let {
+	left,
+	right,
+	children,
+	size = 'py-10',
+	shadow = false,
+	bgColor,
+	textColor,
+	rounded = '',
+	onClick,
+	onLeftHover,
+	...props
+}: Props = $props();
 
-	export function focus() {
-		button.focus();
-	}
+export function focus() {
+	button.focus();
+}
 
-	export function getButton() {
-		return button;
-	}
+export function getButton() {
+	return button;
+}
 </script>
+
+<style>
+:global(html) {
+	:root {
+		--20: 1.25rem;
+	}
+
+	/* background-color: aqua; */
+}
+</style>
 
 <svelte:element
 	this={props?.href ? 'a' : 'button'}
@@ -101,13 +111,3 @@
 		</span>
 	{/if}
 </svelte:element>
-
-<style>
-	:global(html) {
-		:root {
-			--20: 1.25rem;
-		}
-
-		background-color: aqua;
-	}
-</style>
