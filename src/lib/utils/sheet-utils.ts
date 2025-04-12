@@ -1,3 +1,9 @@
+export type Cell = {
+	value?: string;
+	bgColor?: string;
+	color?: string;
+};
+
 // 알파벳 문자열을 숫자로 변환합니다. 예를 들어, "A"는 1, "B"는 2, "AA"는 27이 됩니다.
 export const alphabetToNumber = (letters: string) => {
 	return letters.split('').reduce((prev, next) => prev * 26 + parseInt(next, 36) - 9, 0);

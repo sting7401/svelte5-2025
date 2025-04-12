@@ -5,11 +5,9 @@ import Sheet from '$lib/components/sheet/Sheet.svelte';
 
 let { data }: PageProps = $props();
 
-console.log(data);
-
 const { title } = data;
 
-const lists = $state([
+let lists = $state([
 	[
 		{ value: 'Item', bgColor: '#6aa84f', color: '#fff' },
 		{ value: 'Price', bgColor: '#6aa84f', color: '#fff' },
@@ -27,6 +25,7 @@ const lists = $state([
 		{ value: '=SUM(D2,D3,D4,D5)', bgColor: '#8e7eb6' },
 	],
 ]);
+let listNew = $state([[]]);
 </script>
 
 <svelte:head>
@@ -34,7 +33,11 @@ const lists = $state([
 	<meta name="description" content="This is where the description goes for SEO" />
 </svelte:head>
 
-<Sheet {lists} />
+<Sheet bind:lists />
+
+<pre>
+	{JSON.stringify(lists, null, 2)}
+</pre>
 
 <style>
 :global {
